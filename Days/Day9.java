@@ -1,16 +1,19 @@
 package Days;
 public class Day9 {
     public static void start(String[] input){
-        long sum = 0;
+        long sum = 0, sum2 = 0;
         for (String string : input) {
             String[] temp = string.split(" ");
             int[] nums = new int[temp.length];
             for(int i = 0; i< temp.length; i++){
                 nums[i] = Integer.parseInt(temp[i]);
             }
-            sum += (long) Day9Prior(nums);
+            sum2 += (long) Day9Prior(nums); // Part 2
+            sum += (long) Day9Next(nums); // Part 1
         }
-        System.out.println("The sum is: " + sum);
+        System.out.println("The sum for Part 1 is: " + sum);
+        System.out.println("The sum for Part 2 is: " + sum2);
+
     }
         public static int Day9Prior(int[] values){
         int[][] working = new int[values.length + 1][];
@@ -31,13 +34,13 @@ public class Day9 {
             int temp = working[i][1] - working[i+1][0];
             working[i][0] = temp;
         }
-
+        /* 
         for (int[] is : working) {
             for (int n : is) {
                 System.out.print(n + " ");
             }
             System.out.println();
-        }
+        }*/
         return working[0][0];
     }
     public static int Day9Next(int[] values){
@@ -61,13 +64,13 @@ public class Day9 {
             working[i][last] = temp;
         }
 
-
+        /*
         for (int[] is : working) {
             for (int n : is) {
                 System.out.print(n + " ");
             }
             System.out.println();
-        }
+        } */
         return working[0][working[0].length-1];
     }
 }
